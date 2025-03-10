@@ -1,0 +1,39 @@
+# env:
+#   CART_ENDPOINT: "cart:8080"
+#   DB_HOST: mysql-dev.rdevopsb81.online
+
+appName: shipping
+service:
+  containerPort: 8080
+  type: ClusterIP
+  servicePort: 8080
+
+schema:
+  enabled: true
+  dbExtention: sql
+  containers:
+    - app-user
+    - schema
+    - master-data
+
+probes:
+  initialDelaySeconds: 60
+  periodSeconds: 5
+
+hpa:
+  minReplicas: 2
+  maxReplicas: 10
+
+resources:
+  requestsMemory: "3500Mi"
+  limitsMemory: "4500Mi"
+  requestsCpu: "500m"
+  limitsCpu: "800m"
+
+istiod:
+  allowed_apps: ["cluster.local/ns/default/sa/frontend"]
+
+securityContext:
+  readOnlyRootFilesystem: false
+
+

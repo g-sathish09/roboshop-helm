@@ -1,0 +1,17 @@
+schema:
+  enabled: false
+
+ingress:
+  enabled: false
+
+replicas: 2
+
+probes:
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+securityContext:
+  readOnlyRootFilesystem: true
+
+istiod:
+  enabled: true
