@@ -1,24 +1,10 @@
-# env:
-#   CATALOGUE_HOST: catalogue
-#   CATALOGUE_PORT: "8080"
-#   REDIS_HOST: redis-dev.rdevopsb81.online
+env:
+  CATALOGUE_HOST: catalogue
+  CATALOGUE_PORT: "8080"
+  REDIS_HOST: redis-dev.rdevopsb81.online
 
 appName: cart
 service:
   containerPort: 8080
   type: ClusterIP
   servicePort: 8080
-
-hpa:
-  minReplicas: 2
-  maxReplicas: 10
-
-resources:
-  requestsMemory: "200Mi"
-  limitsMemory: "500Mi"
-  requestsCpu: "100m"
-  limitsCpu: "150m"
-
-istiod:
-  allowed_apps: ["cluster.local/ns/default/sa/frontend", "cluster.local/ns/default/sa/payment", "cluster.local/ns/default/sa/shipping"]
-

@@ -1,5 +1,5 @@
 {{ if .Values.schema.enabled }}
-{{ range .Values.schema.containers }}
+  {{ range .Values.schema.containers }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -7,23 +7,19 @@ metadata:
   name: {{ $.Values.appName }}-{{ . }}-load
 spec:
   template:
-    metadata:
-      labels:
-        sidecar.istio.io/inject: "false"
     spec:
       containers:
-      - name: {{ $.Values.appName }}-{{ . }}-load
-        image: 897722697588.dkr.ecr.us-east-1.amazonaws.com/roboshop-schema-load:latest
-        imagePullPolicy: Always
-        securityContext:
-          readOnlyRootFilesystem: true
-        env:
-          - name: SCHEMA_FILE
-            value: db/{{ . }}.{{ $.Values.schema.dbExtention }}
-        envFrom:
-        - secretRef:
-            name: {{ $.Values.appName }}-job
+        - name: {{ $.Values.appName }}-{{ . }}-load
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+          env:
+            - name: SCHEMA_FILE
+              value: db/{{ . }}.{{ $.Values.schema.dbExtention }}
+
+          {{- range $k, $v := $.Values.schema.env }}
+          - name: {{ $k }}
+            value: {{ $v | quote }}
+          {{- end }}
       restartPolicy: Never
-{{ end }}
-{{ end }}
+  {{ end }}
+  {{ end }}
 

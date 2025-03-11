@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: roboshop-{{ .Values.appName }}
+  name: {{ .Values.appName }}
   labels:
-{{- include "common.labels" . | indent 4 }}
+  {{- include "common.labels" . | indent 4 }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       {{- include "common.labels" . | indent 6 }}
@@ -14,35 +14,13 @@ spec:
       labels:
         {{- include "common.labels" . | indent 8 }}
     spec:
-      serviceAccountName: {{ .Values.appName }}
       containers:
-      - name: {{ .Values.appName }}
-        image: 975050062321.dkr.ecr.us-east-1.amazonaws.com/roboshop-{{ .Values.appName }}:{{ .Values.COMMIT_ID }}
-        securityContext:
-          readOnlyRootFilesystem: {{ .Values.securityContext.readOnlyRootFilesystem }}
-        ports:
-        - containerPort: {{ .Values.service.containerPort }}
-          name: app
-        envFrom:
-        - secretRef:
-            name: {{ .Values.appName }}
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: app
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: app
-          initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
-          periodSeconds: {{ .Values.probes.periodSeconds }}
-        resources:
-          requests:
-            memory: {{ .Values.resources.requestsMemory }}
-            cpu: {{ .Values.resources.requestsCpu }}
-          limits:
-            memory: {{ .Values.resources.limitsMemory }}
-            cpu: {{ .Values.resources.limitsCpu }}
-
+        - name: {{ .Values.appName }}
+          image: public.ecr.aws/w8x4g9h7/roboshop-v3/{{ .Values.appName }}
+          ports:
+            - containerPort: {{ .Values.service.containerPort }}
+          env:
+          {{- range $k, $v := .Values.env }}
+          - name: {{ $k }}
+            value: {{ $v | quote }}
+          {{- end }}

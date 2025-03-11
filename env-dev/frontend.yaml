@@ -10,29 +10,21 @@
 #   PAYMENT_HOST : payment
 #   PAYMENT_PORT : "8080"
 
+env:
+  CATALOGUE_HOST: catalogue
+  CATALOGUE_PORT: "8080"
+  USER_HOST : user
+  USER_PORT : "8080"
+  CART_HOST : cart
+  CART_PORT : "8080"
+  SHIPPING_HOST : shipping
+  SHIPPING_PORT : "8080"
+  PAYMENT_HOST : payment
+  PAYMENT_PORT : "8080"
+
 appName: frontend
 service:
-  containerPort: 8080
-  type: ClusterIP
+  containerPort: 80
+  type: LoadBalancer
   servicePort: 80
 
-ingress:
-  enabled: true
-  hostName: frontend-dev.rdevopsb81.online
-
-hpa:
-  minReplicas: 2
-  maxReplicas: 10
-
-resources:
-  requestsMemory: "200Mi"
-  limitsMemory: "500Mi"
-  requestsCpu: "100m"
-  limitsCpu: "150m"
-
-securityContext:
-  readOnlyRootFilesystem: false
-
-istiod:
-  enabled: true
-  allowed_apps: ["cluster.local/ns/devops/sa/nginx-ingress"]
