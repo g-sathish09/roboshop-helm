@@ -20,6 +20,6 @@ spec:
             value: {{ $v | quote }}
           {{- end }}
       restartPolicy: Never
-  {{ end }}
-  {{ end }}
+{{ end }}
+{{ end }}
 
