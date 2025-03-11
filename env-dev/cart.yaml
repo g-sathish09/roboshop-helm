@@ -1,7 +1,7 @@
 env:
   CATALOGUE_HOST: catalogue
   CATALOGUE_PORT: "8080"
-  REDIS_HOST: redis-dev.rdevopsb81.online
+  REDIS_HOST: redis-dev.harsharoboticshop.online
 
 appName: cart
 service:

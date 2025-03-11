@@ -14,6 +14,6 @@ schema:
   env:
     DB_TYPE: mongo
     APP_GIT_URL: https://github.com/roboshop-devops-project-v3/catalogue
-    DB_HOST: mongodb-dev.rdevopsb81.online
+    DB_HOST: mongodb-dev.harsharoboticshop.online
   containers:
     - master-data
