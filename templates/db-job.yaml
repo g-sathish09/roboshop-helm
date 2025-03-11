@@ -1,5 +1,5 @@
 {{ if .Values.schema.enabled }}
-  {{ range .Values.schema.containers }}
+{{ range .Values.schema.containers }}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -9,17 +9,16 @@ spec:
   template:
     spec:
       containers:
-        - name: {{ $.Values.appName }}-{{ . }}-load
-          image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
-          env:
-            - name: SCHEMA_FILE
-              value: db/{{ . }}.{{ $.Values.schema.dbExtention }}
+      - name: {{ $.Values.appName }}-{{ . }}-load
+        image: public.ecr.aws/w8x4g9h7/roboshop-v3/schema-load
+        env:
+          - name: SCHEMA_FILE
+            value: db/{{ . }}.{{ $.Values.schema.dbExtention }}
 
-          {{- range $k, $v := $.Values.schema.env }}
+        {{- range $k, $v := $.Values.schema.env }}
           - name: {{ $k }}
             value: {{ $v | quote }}
-          {{- end }}
+        {{- end }}
       restartPolicy: Never
 {{ end }}
 {{ end }}
-
