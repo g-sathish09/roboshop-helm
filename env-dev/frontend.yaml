@@ -24,7 +24,7 @@ env:
 
 appName: frontend
 service:
-  containerPort: 80
+  containerPort: 8080
   type: LoadBalancer
   servicePort: 80
 
