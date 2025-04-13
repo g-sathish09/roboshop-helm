@@ -1,6 +1,26 @@
-env:
-  CART_ENDPOINT: "cart:8080"
-  DB_HOST: mysql-dev.rdevopsb81.online
+#env:
+#  CART_ENDPOINT: "cart:8080"
+#  DB_HOST: mysql-dev.rdevopsb81.online
+#
+#appName: shipping
+#service:
+#  containerPort: 8080
+#  type: ClusterIP
+#  servicePort: 8080
+#
+#schema:
+#  enabled: true
+#  dbExtention: sql
+#  env:
+#    DB_TYPE: mysql
+#    APP_GIT_URL: https://github.com/g-sathish09/roboshop-shipping
+#    DB_HOST: mysql-dev.harsharoboticshop.online
+#    DB_USER: root
+#    DB_PASS: RoboShop@1
+#  containers:
+#    - app-user
+#    - schema
+#    - master-data
 
 appName: shipping
 service:
@@ -11,12 +31,6 @@ service:
 schema:
   enabled: true
   dbExtention: sql
-  env:
-    DB_TYPE: mysql
-    APP_GIT_URL: https://github.com/g-sathish09/roboshop-shipping
-    DB_HOST: mysql-dev.harsharoboticshop.online
-    DB_USER: root
-    DB_PASS: RoboShop@1
   containers:
     - app-user
     - schema
