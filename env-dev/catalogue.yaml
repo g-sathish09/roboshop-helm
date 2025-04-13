@@ -11,9 +11,9 @@ service:
 schema:
   enabled: true
   dbExtention: js
-  env:
-    DB_TYPE: mongo
-    APP_GIT_URL: https://github.com/g-sathish09/roboshop-catalogue
-    DB_HOST: mongodb-dev.harsharoboticshop.online
+#  env:
+#    DB_TYPE: mongo
+#    APP_GIT_URL: https://github.com/g-sathish09/roboshop-catalogue
+#    DB_HOST: mongodb-dev.harsharoboticshop.online
   containers:
     - master-data
