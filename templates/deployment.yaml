@@ -19,7 +19,7 @@ spec:
           image: 975050062321.dkr.ecr.us-east-1.amazonaws.com/roboshop-{{ .Values.appName }}:{{ .Values.COMMIT_ID }}
           ports:
             - containerPort: {{ .Values.service.containerPort }}
-            - name: app
+              name: app
           envFrom:
             - secretRef:
                 name: {{ .Values.appName }}
