@@ -33,12 +33,12 @@ spec:
             httpGet:
               path: /health
               port: app
-            initialDelaySeconds: { { .Values.probes.initialDelaySeconds } }
-            periodSeconds: { { .Values.probes.periodSeconds } }
+            initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
+            periodSeconds: {{ .Values.probes.periodSeconds }}
           resources:
             requests:
-              memory: { { .Values.resources.requestsMemory } }
-              cpu: { { .Values.resources.requestsCpu } }
+              memory: {{ .Values.resources.requestsMemory } }
+              cpu: {{ .Values.resources.requestsCpu } }
             limits:
-              memory: { { .Values.resources.limitsMemory } }
-              cpu: { { .Values.resources.limitsCpu } }
+              memory: {{ .Values.resources.limitsMemory }}
+              cpu: {{ .Values.resources.limitsCpu }}
