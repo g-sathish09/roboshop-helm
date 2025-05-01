@@ -38,3 +38,6 @@ schema:
 probes:
   initialDelaySeconds: 60
   periodSeconds: 5
+hpa:
+  minReplicas: 2
+  maxReplicas: 10
